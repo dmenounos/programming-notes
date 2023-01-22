@@ -1,0 +1,16 @@
+Provider(promise__resolve, ...)
+	// ...
+	promise__resolve()
+
+Promise(provider)
+	Promise__resolve {
+		promise._success()		<-- not created yet
+	}
+
+IntProvider(intPromise__resolve, ...)
+	Promise._success {			<-- now created - in scope of both initial and intermediate promise
+		ext__onSuccess()
+		intPromise__resolve()	<-- now the old promise forwards to intermediate promise
+	}
+
+IntPromise(intPromiseProvider)
